@@ -15,7 +15,7 @@ const ProductSchema = new mongoose.Schema({
         required:[true,"please enter product price"],
         maxLength:[8,"price cannot exceed more than one crore"]
     },
-    rating:{
+    ratings:{
         type:Number,
         default:0,
         required:false
@@ -44,10 +44,15 @@ const ProductSchema = new mongoose.Schema({
         default:0,
         required : false
     },
-    review:{
+    reviews:[{
+        user:{
+            type:mongoose.Schema.ObjectId,
+            ref:"User",
+            required:true,
+        },
         name:{
             type:String,
-            require:false,
+            required:false,
         },
         ratings:{
             type:Number,
@@ -57,7 +62,7 @@ const ProductSchema = new mongoose.Schema({
             type:String,
             required:false,
         },
-    },
+    }],
     createdAt:{
         type:Date,
         default:Date.now
